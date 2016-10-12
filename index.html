@@ -15,15 +15,17 @@
         <div class="row">
           <div class="col s12 m8">
             <div class="row">
+
               <div class="col s8 input-field">
-                <input type="text" placeholder="Search here">
+                <input type="text" ng-model="searchBar" placeholder="Search here">
               </div>
               <div class="col s4 input-field">
-                <select>
+                <select ng-model="selected">
                   <option value="name">Name</option>
                   <option value="rating">Rating</option>
                 </select>
               </div>
+
             </div>
           </div>
           <div class="col s12 m4">
@@ -37,11 +39,27 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div>
+            <div ng-repeat="camera in cameras | filter : searchBar | orderBy: selected">
+                <h4>{{ camera.name }}</h4>
+                <p>Rating: {{ camera.rating | makeStars }}</p>
+                <p>Price: {{ camera.price | currency}}</p>
+                <p ng-show='camera.onSale === true'>On Sale!</p>
+                <p ng-show='camera.onSale === false'></p>
+                <img ng-src="{{ camera.image }}"></img>
+                <div><button type="submit" class="btn waves-effect waves-light " id=" {{ camera.id}} ">ADD TO CART</button></div></br></br></br>
+            </div>
+          </div>
+        </div>
+
       </main>
     </div>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/angular.min.js"></script>
     <script src="js/materialize.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
   </body>
 </html>
