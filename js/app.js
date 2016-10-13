@@ -12,6 +12,7 @@
   app.controller('ProductController', ProductController);
 
   function CartController ($rootScope) {
+    var shoppingCart;
     this.items = [];
     this.item = {
       name:'',
@@ -22,20 +23,28 @@
       const newCamera = {
         id: camera.id,
         name: camera.name,
-        cost: camera.price
+        price: camera.price
       }
       //console.log('clicked addItem btn!!');
-      console.log(newCamera);
+      //console.log(newCamera);
       const name = newCamera.name;
-      const cost = newCamera.cost;
+      const price = newCamera.price;
       const id = newCamera.id;
       this.items.push(newCamera)
-      $rootScope.shoppingCart = `${name}    ${cost}`
+      console.log('ITEMS', this.items);
+      console.log(this.items.length);
+      for (var i = 0; i < this.items.length; i++){
+        shoppingCart = this.items[i].name;
+              console.log(shoppingCart)
+      }
+
     }
   }
 
   function ProductController ($rootScope) {
-    $rootScope.shoppingCart = ''
+    //console.log($rootScope)
+    $rootScope.shoppingCart += ''
+    $rootScope.price =+ ''
   }
 
 })();
