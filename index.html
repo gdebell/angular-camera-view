@@ -29,7 +29,6 @@
               </div>
             </div>
           </div>
-
           <div ng-controller="CartController as cart">
             <div class="col s12 m4">
               <div class="card blue-grey">
@@ -38,28 +37,25 @@
                 </div>
                 <div class="card-action">
                   <div ng-controller="ProductController as ProdCtrl">
-
-                      <p ng-repeat="product in ProdCtrl.shoppingCart"><button ng-click="cart.deleteItem(product)"><i class="fa fa-trash"> {{ product.name }} QTY: {{ product.quanity }}</button></i></p>
-                      <p>Subtotal: {{ getTotal.subtotal | currency }} </p>
-                      <p>Tax: {{ getTotal.tax | currency }} </p>
-                      <p>Total: {{ getTotal.total | currency }} </p>
+                    <p ng-repeat="product in ProdCtrl.shoppingCart"><button ng-click="cart.deleteItem(product)"><i class="fa fa-trash"> {{ product.name }} QTY: {{ product.quanity }}</button></i></p>
+                    <p>Subtotal: {{ getTotal.subtotal | currency }} </p>
+                    <p>Tax: {{ getTotal.tax | currency }} </p>
+                    <p>Total: {{ getTotal.total | currency }} </p>
                   </div>
                   <a href="#">Checkout</a>
                 </div>
               </div>
             </div>
-
             <div ng-repeat="camera in cameras | filter : searchBar | orderBy: selected">
-                <h4>{{ camera.name }}</h4>
-                <p>Rating: {{ camera.rating | makeStars }}</p>
-                <p>Price: {{ camera.price | currency}}</p>
-                <p ng-show='camera.onSale === true'>On Sale!</p>
-                <p ng-show='camera.onSale === false'></p>
-                <img ng-src="{{ camera.image }}"></img>
-                <div><button ng-click="cart.addItem(camera)" class="btn waves-effect waves-light">ADD TO CART</button></div></br></br></br>
+              <h4>{{ camera.name }}</h4>
+              <p>Rating: {{ camera.rating | makeStars }}</p>
+              <p>Price: {{ camera.price | currency}}</p>
+              <p ng-show='camera.onSale === true'>On Sale!</p>
+              <p ng-show='camera.onSale === false'></p>
+              <img ng-src="{{ camera.image }}"></img>
+              <div><button ng-click="cart.addItem(camera)" class="btn waves-effect waves-light">ADD TO CART</button></div></br></br></br>
             </div>
           </div>
-
         </div>
       </main>
     </div>
