@@ -14,7 +14,7 @@
     var shoppingCart;
     $rootScope.items = [];
     $rootScope.getTotal = ({
-      subtotal: 10,
+      subtotal: 0,
       tax: 0,
       total: 0
     });
