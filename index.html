@@ -5,6 +5,7 @@
     <title>Camera View</title>
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
   <body ng-init="cameras = [{id: 1,name: 'Nikon D3100 DSLR',image: 'http://ecx.images-amazon.com/images/I/713u2gDQqML._SX522_.jpg',rating: 4,price: 369.99,onSale: true},{id: 2,name: 'Canon EOS 70D',image: 'http://ecx.images-amazon.com/images/I/81U00AkAUWL._SX522_.jpg',rating: 2,price: 1099.0,onSale: false},{id: 3,name: 'Nikon D810A',image:'http://ecx.images-amazon.com/images/I/91wtXIfLl2L._SX522_.jpg',rating: 3,price: 3796.95,onSale: true}]">
 
@@ -14,7 +15,6 @@
       </header>
       <main>
         <div class="row">
-
 
           <div class="col s12 m8">
             <div class="row">
@@ -30,27 +30,24 @@
             </div>
           </div>
 
-
-
+          <div ng-controller="CartController as cart">
             <div class="col s12 m4">
               <div class="card blue-grey">
                 <div class="card-content white-text">
                   <span class="card-title">Your Cart</span>
                 </div>
                 <div class="card-action">
-                  <div ng-controller="ProductController">
-                    <ul>
-                      <li> {{ shoppingCart }}  {{price}} </li>
-                    </ul>
+                  <div ng-controller="ProductController as ProdCtrl">
+
+                      <p ng-repeat="product in ProdCtrl.shoppingCart"><button ng-click="cart.deleteItem(product)"><i class="fa fa-trash"> {{ product.name }} QTY: {{ product.quanity }}</button></i></p>
+                      <p>Subtotal: {{ getTotal.subtotal | currency }} </p>
+                      <p>Tax: {{ getTotal.tax | currency }} </p>
+                      <p>Total: {{ getTotal.total | currency }} </p>
                   </div>
                   <a href="#">Checkout</a>
                 </div>
               </div>
             </div>
-
-            <div ng-controller="CartController as cart">
-              <ul ng-repeat="item in cart.items track by $index">
-              </ul>
 
             <div ng-repeat="camera in cameras | filter : searchBar | orderBy: selected">
                 <h4>{{ camera.name }}</h4>
